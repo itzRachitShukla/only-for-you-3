@@ -7,8 +7,8 @@
     <style>
         :root { 
             --primary: #fbcfe8; 
-            --bg-color: #faebd7; /* BlanchedAlmond */
-            --glass-bg: rgba(255, 255, 255, 0.25); /* More transparent */
+            --bg-color: #faebd7; 
+            --glass-bg: rgba(255, 255, 255, 0.25); 
             --glass-border: rgba(255, 255, 255, 0.5);
         }
 
@@ -26,9 +26,9 @@
             width: 100vw; 
         }
         
-        /* --- COZY LYRICS SIDEBAR --- */
+        /* --- SIDEBAR --- */
         .lyrics-panel { 
-            flex: 0 0 280px; /* Fixed smaller width */
+            flex: 0 0 280px; 
             background: var(--glass-bg); 
             backdrop-filter: blur(8px); 
             display: flex; 
@@ -43,25 +43,25 @@
         }
 
         .lyrics-text { 
-            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Cuter font style */
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; 
             font-size: 20px; 
             font-weight: normal; 
             color: #777; 
-            transition: all 0.8s ease; /* Slower fade */
+            transition: all 0.5s ease; 
             opacity: 0.3; 
             transform: scale(0.95); 
             margin-top: -10px;
         }
 
         .lyrics-text.active { 
-            color: #e05297; /* Soft Pink/Red */
+            color: #e05297; 
             opacity: 1; 
             transform: scale(1.05); 
             text-shadow: 0 2px 12px rgba(224, 82, 151, 0.3);
             font-weight: bold;
         }
 
-        /* --- MAIN CARD AREA --- */
+        /* --- MAIN AREA --- */
         .main-panel { 
             flex: 1; 
             display: flex; 
@@ -84,7 +84,7 @@
             padding: 40px; 
             gap: 25px; 
             text-align: center; 
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .message { 
@@ -96,14 +96,19 @@
             font-family: "Segoe UI", sans-serif;
         }
 
+        /* --- FIXED IMAGE STYLING --- */
         .screenshot { 
             max-width: 100%; 
             max-height: 35vh; 
-            object-fit: contain; 
-            border-radius: 18px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transform: rotate(-1deg); /* Slight cute tilt */
-            border: 4px solid white;
+            object-fit: contain; /* Ensures image isn't stretched */
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 2px solid white;
+            
+            /* Fixes for blurriness */
+            transform: none; /* Removed the tilt */
+            image-rendering: -webkit-optimize-contrast; /* Sharpens on Webkit */
+            backface-visibility: hidden; /* Prevents rendering artifacts */
         }
         
         button.box-button { 
@@ -114,14 +119,14 @@
             padding: 0 32px; 
             font-weight: 700; 
             cursor: pointer; 
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+            transition: 0.2s;
             font-size: 16px;
             color: #553344;
             box-shadow: 0 4px 10px rgba(251, 207, 232, 0.6);
         }
 
         button.box-button:hover { 
-            transform: scale(1.05) translateY(-2px); 
+            transform: scale(1.05); 
             background: rgb(255, 145, 190); 
             color: white; 
         }
@@ -138,7 +143,6 @@
 
         .hidden { display: none !important; }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) { 
             .container { flex-direction: column; } 
             .lyrics-panel { 
@@ -186,11 +190,11 @@
 
     <script>
         // --- CONFIGURATION ---
-        const spotifyLink = "https://open.spotify.com/playlist/20vWhIejFBLpzBJrWqTMTa"; 
+        // REPLACE WITH YOUR PLAYLIST LINK
+        const spotifyLink = "https://open.spotify.com/playlist/YOUR_PLAYLIST_ID_HERE"; 
         
-        // HARDCODED TIME SETTINGS (2:39 to 3:25)
-        const START_TIME = 159; 
-        const END_TIME = 205;   
+        const START_TIME = 159; // 2:39
+        const END_TIME = 205;   // 3:25
 
         const songLyrics = [
             { time: 159, text: "I only pray you'll never leave me behind (never leave me)" },
@@ -208,11 +212,11 @@
 
         const slides = [
             { img: "https://i.postimg.cc/PrBgR9kh/pista.jpg", text: "Handcrafted specially for you :) <3" }, 
-            { img: "https://i.postimg.cc/tCJw9qg0/bimage1.png", text: "Your intuition wanted the best for me, so do you always want the best for me. Just, knowing that someone has got ur back is just a feeling for itself that speaks from inside." },
-            { img: "https://i.postimg.cc/bJQqwPHD/bimg2.png", text: "Just a glimpse of a life lesson. How you actually make me understand stuff. Anything that you see in this birthday card is not a glaze at all. The value you play in my life as a mentor, as a big brother, it means alot to me." },
-            { img: "https://i.postimg.cc/9FyggMX2/bimage3.png", text: "You always knew didn't you, atleast your gut sensed that danger like an elder brother, did it not?" },
-            { img: "https://i.postimg.cc/Y2Dt2dQX/bimage4.png", text: "That \"chote\" really hits deep in the core. It really means alot to hear that word. The sole thought of being away from you haunts me. Yet, it's just that I cannot really be away from you." },
-            { img: "https://i.postimg.cc/BQqsCdsz/bimage5.png", text: " I am sorry if you felt that way back there. But the trust you've put in me. I trust you with my life, I really mean it. I really trust you so much." },
+            { img: "https://i.postimg.cc/tCJw9qg0/bimage1.png", text: "Your intuition wanted the best for me, so do you always want the best for me. Just knowing that someone has got ur back is a feeling that speaks from inside." },
+            { img: "https://i.postimg.cc/bJQqwPHD/bimg2.png", text: "Just a glimpse of a life lesson. How you actually make me understand stuff. Anything that you see in this birthday card is not a glaze at all. The value you play in my life as a mentor, as a big brother... it means a lot to me." },
+            { img: "https://i.postimg.cc/9FyggMX2/bimage3.png", text: "You always knew didn't you? At least your gut sensed that danger like an elder brother, did it not?" },
+            { img: "https://i.postimg.cc/Y2Dt2dQX/bimage4.png", text: "That \"chote\" really hits deep in the core. It really means a lot to hear that word. The sole thought of being away from you haunts me. Yet, it's just that I cannot really be away from you." },
+            { img: "https://i.postimg.cc/BQqsCdsz/bimage5.png", text: "I am sorry if you felt that way back there. But the trust you've put in me... I trust you with my life, I really mean it. I trust you so much." },
             { img: "https://i.postimg.cc/W1w5wHp2/bimage6.png", text: "I can love someone like crazy, right? So, here is the website I portray just a portion of how much crazy I can go when it comes to loving someone to the deepest." },
             { img: "", text: "No matter how much you say that your words are harsh, they could never be harsh for me. I love the harsh beast, because rather than being upset by those words, I can feel the intention and the care." },
         ];
@@ -232,13 +236,11 @@
             // --- MUSIC ENGINE ---
             music.addEventListener('timeupdate', () => {
                 const currentTime = music.currentTime;
-
                 // Loop Logic
                 if (currentTime >= END_TIME) {
                     music.currentTime = START_TIME;
                     music.play();
                 }
-
                 // Lyric Logic
                 const currentLyric = songLyrics.reduce((prev, curr) => {
                     return (curr.time <= currentTime) ? curr : prev;
@@ -249,11 +251,11 @@
                     setTimeout(() => {
                         lyricDisplay.innerText = currentLyric.text;
                         lyricDisplay.classList.add('active'); 
-                    }, 400); // Slower fade transition
+                    }, 400); 
                 }
             });
 
-            // --- SLOWER TYPING ANIMATION ---
+            // --- FASTER TYPING ANIMATION ---
             function typeWriter(text, element) {
                 element.innerHTML = "";
                 let i = 0;
@@ -266,8 +268,8 @@
                     if (i < text.length) { 
                         cursor.before(text.charAt(i)); 
                         i++; 
-                        // INCREASED DELAY: 50ms to 90ms per character (Slower)
-                        let speed = Math.random() * 40 + 50; 
+                        // UPDATED SPEED: 15ms to 35ms (Much faster than before)
+                        let speed = Math.random() * 20 + 15; 
                         typingTimeout = setTimeout(type, speed); 
                     } else { 
                         cursor.style.display = 'none'; 
@@ -294,7 +296,6 @@
                     step = 0;
                     music.volume = 0.5;
                     
-                    // Force start time
                     if(music.readyState >= 1) {
                         music.currentTime = START_TIME;
                         music.play();
@@ -323,5 +324,4 @@
         });
     </script>
 </body>
-
 </html>

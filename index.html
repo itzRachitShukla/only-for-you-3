@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Happy Birthday Ujjwal Bhaiya <333</title>
+    <style>
+        :root { 
+            --primary: #fbcfe8; 
+            --bg-color: #faebd7; /* BlanchedAlmond */
+            --glass-bg: rgba(255, 255, 255, 0.25); /* More transparent */
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            font-family: "Segoe UI", "Nunito", sans-serif; 
+            background: var(--bg-color); 
+            overflow: hidden; 
+        }
+
+        .container { 
+            display: flex; 
+            height: 100vh; 
+            width: 100vw; 
+        }
+        
+        /* --- COZY LYRICS SIDEBAR --- */
+        .lyrics-panel { 
+            flex: 0 0 280px; /* Fixed smaller width */
+            background: var(--glass-bg); 
+            backdrop-filter: blur(8px); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+            text-align: center; 
+            border-right: 1px solid var(--glass-border);
+            box-shadow: 5px 0 15px rgba(0,0,0,0.02);
+            z-index: 2;
+        }
+
+        .lyrics-text { 
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Cuter font style */
+            font-size: 20px; 
+            font-weight: normal; 
+            color: #777; 
+            transition: all 0.8s ease; /* Slower fade */
+            opacity: 0.3; 
+            transform: scale(0.95); 
+            margin-top: -10px;
+        }
+
+        .lyrics-text.active { 
+            color: #e05297; /* Soft Pink/Red */
+            opacity: 1; 
+            transform: scale(1.05); 
+            text-shadow: 0 2px 12px rgba(224, 82, 151, 0.3);
+            font-weight: bold;
+        }
+
+        /* --- MAIN CARD AREA --- */
+        .main-panel { 
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative; 
+        }
+
+        .box { 
+            width: 85%; 
+            max-width: 650px; 
+            min-height: 45vh; 
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px dashed #bfa3a3;
+            border-radius: 30px; 
+            box-shadow: 10px 15px 25px rgba(210, 180, 140, 0.4); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 40px; 
+            gap: 25px; 
+            text-align: center; 
+            transition: all 0.3s ease;
+        }
+
+        .message { 
+            font-size: clamp(17px, 2vw, 24px); 
+            line-height: 1.6; 
+            color: #444; 
+            min-height: 80px; 
+            white-space: pre-wrap;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        .screenshot { 
+            max-width: 100%; 
+            max-height: 35vh; 
+            object-fit: contain; 
+            border-radius: 18px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: rotate(-1deg); /* Slight cute tilt */
+            border: 4px solid white;
+        }
+        
+        button.box-button { 
+            border-radius: 50px; 
+            height: 50px; 
+            border: none; 
+            background: var(--primary); 
+            padding: 0 32px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+            font-size: 16px;
+            color: #553344;
+            box-shadow: 0 4px 10px rgba(251, 207, 232, 0.6);
+        }
+
+        button.box-button:hover { 
+            transform: scale(1.05) translateY(-2px); 
+            background: rgb(255, 145, 190); 
+            color: white; 
+        }
+
+        .spotify-btn { 
+            background-color: #1DB954 !important; 
+            color: white !important; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+        }
+
+        .hidden { display: none !important; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) { 
+            .container { flex-direction: column; } 
+            .lyrics-panel { 
+                flex: none;
+                height: 12vh; 
+                width: 100%; 
+                padding: 10px; 
+                border-right: none; 
+                border-bottom: 1px solid rgba(255,255,255,0.3); 
+                box-sizing: border-box;
+            } 
+            .lyrics-text { font-size: 16px; margin-top: 0; }
+            .main-panel { height: 88vh; } 
+            .box { width: 92%; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <aside class="lyrics-panel">
+            <div id="lyricDisplay" class="lyrics-text">🎵 For my big brother...</div>
+        </aside>
+
+        <main class="main-panel">
+            <div class="box">
+                <div id="content" class="message">
+                    💗💖 Hey… I know we couldn’t talk much recently, but I made something for you. 
+                    <br><br>Just take a moment. It's straight from my heart.
+                </div>
+                
+                <img id="screenshot" class="screenshot hidden" alt="memory" />
+                
+                <div class="controls">
+                    <button id="nextBtn" class="box-button">Start Experience</button>
+                    <a id="spotifyBtn" href="#" target="_blank" class="box-button spotify-btn hidden">Open Playlist 🎵</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const spotifyLink = "https://open.spotify.com/playlist/YOUR_PLAYLIST_ID_HERE"; 
+        
+        // HARDCODED TIME SETTINGS (2:39 to 3:25)
+        const START_TIME = 159; 
+        const END_TIME = 205;   
+
+        const songLyrics = [
+            { time: 159, text: "I only pray you'll never leave me behind (never leave me)" },
+            { time: 164, text: "Because good music can be so hard to find (so hard to find)" },
+            { time: 170, text: "I take your hand, hold it closer to mine (yeah)" },
+            { time: 175, text: "Thought love was dead, but now you're changing my mind" },
+            { time: 180, text: "My heart's a stereo" },
+            { time: 183, text: "It beats for you, so listen close" },
+            { time: 186, text: "Hear my thoughts in every no-ote" },
+            { time: 191, text: "Make me your radio" },
+            { time: 194, text: "And turn me up when you feel low" },
+            { time: 197, text: "This melody was meant for you" },
+            { time: 201, text: "Just sing along to my stereo" },
+        ];
+
+        const slides = [
+            { img: "https://i.postimg.cc/PrBgR9kh/pista.jpg", text: "Handcrafted specially for you :) <3" }, 
+            { img: "https://i.postimg.cc/tCJw9qg0/bimage1.png", text: "Your intuition wanted the best for me, so do you always want the best for me. Just, knowing that someone has got ur back is just a feeling for itself that speaks from inside." },
+            { img: "https://i.postimg.cc/bJQqwPHD/bimg2.png", text: "Just a glimpse of a life lesson. How you actually make me understand stuff. Anything that you see in this birthday card is not a glaze at all. The value you play in my life as a mentor, as a big brother, it means alot to me." },
+            { img: "https://i.postimg.cc/9FyggMX2/bimage3.png", text: "You always knew didn't you, atleast your gut sensed that danger like an elder brother, did it not?" },
+            { img: "https://i.postimg.cc/Y2Dt2dQX/bimage4.png", text: "That \"chote\" really hits deep in the core. It really means alot to hear that word. The sole thought of being away from you haunts me. Yet, it's just that I cannot really be away from you." },
+            { img: "https://i.postimg.cc/BQqsCdsz/bimage5.png", text: " I am sorry if you felt that way back there. But the trust you've put in me. I trust you with my life, I really mean it. I really trust you so much." },
+            { img: "https://i.postimg.cc/W1w5wHp2/bimage6.png", text: "I can love someone like crazy, right? So, here is the website I portray just a portion of how much crazy I can go when it comes to loving someone to the deepest." },
+            { img: "", text: "No matter how much you say that your words are harsh, they could never be harsh for me. I love the harsh beast, because rather than being upset by those words, I can feel the intention and the care." },
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const content = document.getElementById('content');
+            const screenshot = document.getElementById('screenshot');
+            const nextBtn = document.getElementById('nextBtn');
+            const spotifyBtn = document.getElementById('spotifyBtn');
+            const music = document.getElementById('bgMusic');
+            const lyricDisplay = document.getElementById('lyricDisplay');
+            
+            document.getElementById('spotifyBtn').href = spotifyLink;
+            let step = -1;
+            let typingTimeout;
+
+            // --- MUSIC ENGINE ---
+            music.addEventListener('timeupdate', () => {
+                const currentTime = music.currentTime;
+
+                // Loop Logic
+                if (currentTime >= END_TIME) {
+                    music.currentTime = START_TIME;
+                    music.play();
+                }
+
+                // Lyric Logic
+                const currentLyric = songLyrics.reduce((prev, curr) => {
+                    return (curr.time <= currentTime) ? curr : prev;
+                }, songLyrics[0]);
+
+                if(currentLyric && lyricDisplay.innerText !== currentLyric.text) {
+                    lyricDisplay.classList.remove('active'); 
+                    setTimeout(() => {
+                        lyricDisplay.innerText = currentLyric.text;
+                        lyricDisplay.classList.add('active'); 
+                    }, 400); // Slower fade transition
+                }
+            });
+
+            // --- SLOWER TYPING ANIMATION ---
+            function typeWriter(text, element) {
+                element.innerHTML = "";
+                let i = 0;
+                const cursor = document.createElement('span');
+                cursor.style.borderRight = "2px solid #555";
+                cursor.style.animation = "blink 1s infinite";
+                element.appendChild(cursor);
+
+                function type() {
+                    if (i < text.length) { 
+                        cursor.before(text.charAt(i)); 
+                        i++; 
+                        // INCREASED DELAY: 50ms to 90ms per character (Slower)
+                        let speed = Math.random() * 40 + 50; 
+                        typingTimeout = setTimeout(type, speed); 
+                    } else { 
+                        cursor.style.display = 'none'; 
+                    }
+                }
+                clearTimeout(typingTimeout);
+                type();
+            }
+
+            function showSlide(i) {
+                const slide = slides[i];
+                if (!slide) return;
+                if (slide.img) { 
+                    screenshot.src = slide.img; 
+                    screenshot.classList.remove('hidden'); 
+                } else { 
+                    screenshot.classList.add('hidden'); 
+                }
+                typeWriter(slide.text, content);
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (step === -1) {
+                    step = 0;
+                    music.volume = 0.5;
+                    
+                    // Force start time
+                    if(music.readyState >= 1) {
+                        music.currentTime = START_TIME;
+                        music.play();
+                    } else {
+                        music.addEventListener('loadedmetadata', () => {
+                            music.currentTime = START_TIME;
+                            music.play();
+                        }, { once: true });
+                        music.play(); 
+                    }
+                    
+                    nextBtn.textContent = 'Next >';
+                    showSlide(step);
+                } else {
+                    step++;
+                    if (step < slides.length) { 
+                        showSlide(step); 
+                    } else {
+                        content.innerHTML = "Happy Birthday, Bhaiyaaa <333. <br><br>Click below for the playlist I made for you. Make sure to decode it :)))";
+                        screenshot.classList.add('hidden');
+                        nextBtn.classList.add('hidden');
+                        spotifyBtn.classList.remove('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
